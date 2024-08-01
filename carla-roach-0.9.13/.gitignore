@@ -1,0 +1,13 @@
+__pycache__/
+**/__pycache__
+*.py[cod]
+*$py.class
+
+logs/
+outputs/
+wandb/
+temp/
+*.pyc
+
+.vscode/settings.json
+carla_gym/envs/__pycache__/__init__.cpython-37.pyc

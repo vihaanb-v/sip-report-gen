@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "train_rl.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Python Debugger: Benchmark",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "benchmark.py",
+            "console": "integratedTerminal"
+        }
+    ]
+}

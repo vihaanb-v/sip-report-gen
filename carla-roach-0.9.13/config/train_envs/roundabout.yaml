@@ -1,0 +1,8 @@
+# @package _group_
+- env_id: Roundabout-v0
+  env_configs:
+    carla_map: roundabout1
+    num_zombie_vehicles: [0, 10]
+    num_zombie_walkers: 0
+    weather_group: dynamic_1.0
+  gpu: [0]

@@ -1,0 +1,11 @@
+- [**Blocked**](blocked.py) checks if the ego vehicle has **linear_speed** less than **self._speed_threshold** and that condition is going for time greater than **self._below_threshold_max_time**.
+- **init()**
+  - **self._time_last_valid_state** is variable that stores relative simulation time from the **timestap** argument in the **tick()** method. It is initialized when the **tick()** method is first accessed.
+  - Remaining two variables are described in the first line.
+- **tick()**:
+  - Example of **timestap** variable is available [**here**](../task_vehicle.md).
+  - **linear_speed** contains the resultant speed of the ego vehicle vehicle that is calculated form the x and y component of velocity vector.
+  - In the **if-else** block
+    - if **linear_speed** is less than **self.speed_threshold** and **self._time_last_valid_state** is already initialized then it is checked if the ego vehicle is blocked for time greater than **self._below_threshold_max_time**. If it is then **info** dictionary is constructed, that stores the information of step number, simulation time and ego vehicle location.
+    - else **self._time_last_valid_state** is updated if **linear_speed** is greater than **self.speed_threshold** or initialized if it is **None**.
+  - **info** dictionary is returned. 

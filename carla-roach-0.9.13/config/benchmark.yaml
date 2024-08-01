@@ -1,0 +1,23 @@
+defaults:
+  - agent: ppo
+  - test_suites: cogmod_test
+actors:
+  hero:
+    agent: ppo
+    reward:
+      entry_point: reward.valeo_action:ValeoAction
+    terminal:
+      entry_point: terminal.leaderboard:Leaderboard
+carla_sh_path: /home/ubuntu/vihaan-devel/carla/CARLA_0.9.13/CarlaUE4.sh # /home/abjawad/Documents/GitHub/CARLA_0.9.13/CarlaUE4.sh
+log_level: debug
+host: localhost
+port: 2000
+seed: 2021
+no_rendering: false
+kill_running: true
+resume: true
+wb_project: iccv21-roach-benchmark
+wb_notes: null
+wb_group: cogmod
+wb_tags: null
+log_video: true

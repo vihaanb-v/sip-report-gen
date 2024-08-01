@@ -1,0 +1,62 @@
+- In this script, several color constants are defined using RGB values after the import statements. These constants can be useful when working with graphical applications, image processing, or visualization tasks. Each constant represents a specific color, and can be used instead of specifying the RGB values directly in code, which can enhance code readability.
+- **tint()**
+  - This function takes a color represented as an RGB tuple **color** and a tinting factor **factor**. It then computes the tinted color based on the specified factor. The function works by increasing the intensity of each color channel (red, green, and blue) toward their maximum value (255) based on the tinting factor.
+  - It unpacks the RGB values **r, g, b** from the input **color** tuple.
+  - It then increases the red, green, blue channel intensity based on the tinting factor.
+  - It ensures that the resulting color channels are capped at a maximum value of 255.
+  - The **factor** determines how much the color is tinted. A **factor** of 0 means no tinting, and a **factor** of 1 means full tinting (resulting in white).
+- **ObsManager**
+  - **__ init__()**
+    - **self._width**: The width of the observation in pixels, initialized from the provided obs_configs.
+    - **self._pixels_ev_to_bottom**: A configuration related to pixels representing the distance from the ego vehicle to the bottom of the observation.
+    - **self._pixels_per_meter**: A configuration related to the conversion factor between pixels and meters.
+    - **self._history_idx**: A list of indices representing the history of observations to include.
+    - **self._scale_bbox**: A boolean flag indicating whether to scale the bounding box. It defaults to True.
+    - **self._scale_mask_col**: A scaling factor for the mask column, with a default value of 1.1.
+    - **self._history_queue**: A deque with a maximum length of 20, presumably used to store a history of observations.
+    - **self._image_channels**: The number of channels in the image (set to 3).
+    - **self._masks_channels**: The number of channels in the masks, computed based on the history indices.
+    - **self._parent_actor**: A reference to the parent actor (possibly an ego vehicle).
+    - **self._world**: A reference to the world (assuming it's related to the CARLA simulation environment).
+    - **self._map_dir**: The path to a directory containing map-related files. **Path(__file__).resolve().parent / 'maps'** constructs a **Path** object representing the directory path to the 'maps' folder, relative to the location of the current script.
+    - A call to the **__ init__** method of the parent class **ObsManagerBase** using **super(ObsManager, self).__init__()** calls the **_define_obs_space()** method.
+  - **_define_obs_space()**
+    - This is used to define the observation space for the **ObsManager** class. It appears that the observation space is defined as a dictionary with two components: **rendered** and **masks**. Let's break down the components:
+      - **rendered**:
+        - It represents the rendered image observation.
+        - The observation space is defined as a **spaces.Box** space with the following characteristics:
+            - **low=0**: The minimum pixel value.
+            - **high=255**: The maximum pixel value.
+            - **shape=(self._width, self._width, self._image_channels)**: The shape of the observation space, where self._width is the width of the observation in pixels, and self._image_channels is the number of color channels (set to 3).
+            - **dtype=np.uint8**: The data type of the observation space elements is set to unsigned 8-bit integers.
+      - **masks**:
+        - It represents the masks associated with the observation.
+        - The observation space is defined as a **spaces.Box** space with the following characteristics:
+          - **low=0**: The minimum pixel value.
+          - **high=255**: The maximum pixel value.
+          - **shape=(self._masks_channels, self._width, self._width)**: The shape of the observation space, where self._masks_channels is the number of channels in the masks (computed based on the history indices), and self._width is the width of the observation in pixels.
+          - **dtype=np.uint8**: The data type of the observation space elements is set to unsigned 8-bit integers.
+  - **attach_ego_vehicle()**
+    - this function takes in the hdf5 map foormat and converts those to np arrays for later use
+    - important is to understand that 1 m -> 5 pixel in birdview, so 192 pixel will correspond to 39 m approximately
+
+  - **_get_stops(criteria stops)**
+  - ??? not sure how the criteria_stop._target_stop_sign does
+  - checks if the stop_sign is not None and not completed that create a square extent for the stop sign
+  - returns a list with [ss.transform, bb_loc, bb_ext]
+
+  - **get_observation()**
+  - This is the main function
+  - flowchart
+    - gets the trnasform and bounding box
+    - has a inbuilt **is_within_distance** function
+      - the function takes in a location and checks if the object is within distance threshold - 39 m (192/5) 
+      - also checks if the object is within 1 px distance which will mean they are colliding
+    - gets all vehicle and pedestrian bounding box list 
+    - use a function **_get_surrounding_actors()**
+      - takes in a list of bb, criteria, and scale
+      - returns a list of actor bb if bb is inside the criteria
+    - if the _scale_bbox is true than scales the pedestrian bouunding box to twice the size
+    - gets the green, yellow and red 
+
+

@@ -1,0 +1,5 @@
+- The whole script will be described later.
+- **lbc_hazard_vehicle()**
+  - This returns the nearest vehicle's location that may collide with the ego vehicle within **proximity_threshold** meter distance.
+- **lbc_hazard_walker()**
+  - This returns the nearest pedestrian's location that may collide with the ego vehicle within **proximity_threshold** meter distance.

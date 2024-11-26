@@ -5,6 +5,7 @@ __pycache__/
 
 logs/
 outputs/
+accident_dataset/
 wandb/
 temp/
 *.pyc

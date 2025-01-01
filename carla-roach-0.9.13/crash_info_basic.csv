@@ -1,10 +1,2 @@
-Town,Traffic Density,Driver Condition,Date,Trial Number,Ego Actor ID,Other Actor ID
-Town04,high,distracted,00-06-31,1,4763,4929
-Town,Traffic Density,Driver Condition,Date,Trial Number,Ego Actor ID,Other Actor ID
-Town04,high,distracted,00-06-31,1,4763,4929
-Town,Traffic Density,Driver Condition,Date,Trial Number,Ego Actor ID,Other Actor ID
-Town04,high,distracted,00-06-31,1,4763,4929
-Town,Traffic Density,Driver Condition,Date,Trial Number,Ego Actor ID,Other Actor ID
-Town04,high,distracted,00-06-31,1,4763,4929
-Town,Traffic Density,Driver Condition,Date,Trial Number,Ego Actor ID,Other Actor ID
-Town04,high,distracted,00-06-31,1,4763,4929
+Crash # in Log File,Town,Traffic Density,Driver Condition,Date,Trial Number,Ego Actor ID,Other Actor ID
+1,Town04,high,distracted,00-06-31,1,4763,4929
